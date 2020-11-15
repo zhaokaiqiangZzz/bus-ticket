@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BaseMenu } from '../../base/base-menu';
 import { Router } from '@angular/router';
-import { menus } from '../../conf/menu.config';
 // import { AuthService } from '../../service/auth.service';
 // import { User } from '../../common/user';
 import { Subscription } from 'rxjs';
