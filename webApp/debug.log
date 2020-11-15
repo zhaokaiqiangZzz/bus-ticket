@@ -1,2 +1,3 @@
 [1103/191502.023:ERROR:directory_reader_win.cc(43)] FindFirstFile: 系统找不到指定的路径。 (0x3)
 [1115/113844.819:ERROR:directory_reader_win.cc(43)] FindFirstFile: 系统找不到指定的路径。 (0x3)
+[1115/144622.517:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\86136\AppData\Local\Temp\karma-36507707\Crashpad\attachments\4c4b3e42-fe35-4c63-a09e-f227028e9916: 系统找不到指定的路径。 (0x3)
