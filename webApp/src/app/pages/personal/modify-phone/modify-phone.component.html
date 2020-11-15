@@ -1,0 +1,115 @@
+<form [formGroup]="userForm" (ngSubmit)="nextStep()">
+  <div class="row">
+    <div class="col-md-4 offset-md-2">
+      <div class="row">
+        <div class="col-md-4 text-right">
+          <label for="phoneNumber" class="form-text">原手机号:</label>
+        </div>
+        <div class="col-md-8">
+          <input type="text" class="form-control" id="phoneNumber"
+                 formControlName="username"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-md-4 offset-md-2">
+      <div class="row">
+        <div class="col-md-4 text-right">
+          <label for="verificationCode">验证码<code>*</code></label>
+        </div>
+        <div class="col-md-8">
+          <div class="input-group">
+            <input type="text" class="form-control" id="verificationCode" placeholder="请输入验证码"
+                   formControlName="verificationCode"/>
+            <div class="input-group-append">
+<!--              <button type="button" class=" btn btn-sm"-->
+<!--                      [ngClass]="{'btn-success': !verificationCodeButtonDisabled, 'btn-secondary': verificationCodeButtonDisabled}"-->
+<!--                      (click)="sendVerificationCode()"-->
+<!--                      [disabled]="verificationCodeButtonDisabled">{{ validateCodeInfo }}</button>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template [ngIf]="showErrorInfo">
+    <div class="row">
+      <div class="col-md-6 text-right">
+        <small class="text-danger">{{ errorInfo }}</small>
+      </div>
+    </div>
+  </ng-template>
+  <br/>
+  <div class="row">
+    <div class="col-md-4 offset-md-2">
+      <div class="row">
+        <div class="col-md-4 text-right">
+          <label for="username" class="form-text">新手机号<code>*</code></label>
+        </div>
+        <div class="col-md-8">
+          <input type="number" class="form-control" placeholder="请输入手机号"
+                 id="username"
+                 formControlName="phoneNumber"/>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--  <ng-template [ngIf]="(userForm.get('username').value == phoneNumber.value)">-->
+<!--    <div class="row">-->
+<!--      <div class="col-md-6 text-right">-->
+<!--        <small class="text-danger">新手机号与原手机号相同</small>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </ng-template>-->
+<!--  <ng-template [ngIf]="phoneNumber.errors && phoneNumber.errors.exist && !(userForm.get('username').value == phoneNumber.value)">-->
+<!--    <div class="row">-->
+<!--      <div class="col-md-6 text-right">-->
+<!--        <small class="text-danger">该手机号已被占用</small>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </ng-template>-->
+  <br/>
+  <div class="row">
+    <div class="col-md-4 offset-md-2">
+      <div class="row">
+        <div class="col-md-4 text-right">
+          <label for="verificationCode">验证码<code>*</code></label>
+        </div>
+        <div class="col-md-8">
+          <div class="input-group">
+            <input type="text" class="form-control" id="code" placeholder="请输入验证码" formControlName="code"/>
+            <div class="input-group-append">
+<!--              <button type="button" class="btn btn-sm"-->
+<!--                      [ngClass]="{'btn-success': !codeButtonDisabled, 'btn-secondary': codeButtonDisabled}"-->
+<!--                      (click)="sendCode()" [disabled]="codeButtonDisabled">{{ codeInfo }}</button>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template [ngIf]="showErrorCodeInfo">
+    <div class="row">
+      <div class="col-md-6 text-right">
+        <small class="text-danger">{{ errorCodeInfo }}</small>
+      </div>
+    </div>
+  </ng-template>
+  <br/>
+  <div class="row mt-4">
+    <div class="col-md-4 offset-md-2">
+      <div class="row">
+        <div class="col-md-8 offset-md-4">
+          <button [appYzSubmitButton]="{submitting: submitting}" class="btn btn-dark btn-sm" [disabled]="userForm.invalid || phoneNumber.errors"
+                  type="submit">
+            <i class="far fa-save"></i>
+            &nbsp;完成
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
