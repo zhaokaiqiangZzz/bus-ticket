@@ -5,7 +5,6 @@ import {Assert, isNotNull, Random, UnknownProperty, Utils} from '../utils';
 import {NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
 import Swal from 'sweetalert2';
-import * as FileSaver from 'file-saver';
 import {HttpErrorResponse} from '../base/Http-error-response';
 
 /**
@@ -537,15 +536,6 @@ export class CommonService {
    */
   randomString(length: number): string {
     return Random.nextString('', length);
-  }
-
-  /**
-   * 保存文件
-   * @param blob 文件
-   * @param fileName 文件名
-   */
-  saveFile(blob: Blob, fileName: string): void {
-    FileSaver.saveAs(blob, fileName);
   }
 
   /**

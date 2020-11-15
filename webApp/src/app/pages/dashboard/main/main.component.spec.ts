@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AppComponent } from '../../../app.component';
-import { NgxEchartsModule } from 'ngx-echarts';
 import {getTestScheduler} from 'jasmine-marbles';
 
 describe('page -> dashboard -> MainComponent', () => {
@@ -23,7 +22,6 @@ describe('page -> dashboard -> MainComponent', () => {
         HttpClientTestingModule,
         SweetAlert2Module.forRoot(),
         // FuncTestingModule,
-        NgxEchartsModule,
         // ServiceTestingModule
       ],
       providers: [
