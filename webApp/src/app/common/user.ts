@@ -4,4 +4,4 @@
 export class User {
   /** id */
   id: number;
-} 
+}
