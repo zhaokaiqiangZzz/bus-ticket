@@ -125,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "webApp"
+    }
+  },
+  "defaultProject": "webApp",
+  "cli": {
+    "analytics": false
+  }
 }

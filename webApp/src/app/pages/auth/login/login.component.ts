@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -43,22 +45,33 @@ export class LoginComponent implements OnInit {
 
   apiVersion: string;
 
-  constructor(private builder: FormBuilder) {
+  constructor(private builder: FormBuilder,
+              private activatedRoute: ActivatedRoute,
+              private authService: AuthService,
+              private router: Router) {
 
   }
 
   ngOnInit(): void {
     /** 创建表单 */
     this.loginForm = this.builder.group({
-      username: ['', Validators.required],
+      username: ['', [Validators.minLength(5),
+        Validators.maxLength(20),
+        Validators.pattern('\\w+'),
+        Validators.required]],
       password: ['', Validators.required],
-      verificationCode: ['0000', Validators.required],
-      otpCode: ['0000', Validators.required],
-      superToken: ['']
     });
+    this.errorInfo = '';
   }
 
   login(): void {
+    this.authService.login(this.loginForm.value)
+      .subscribe(() => {
+        this.authService.requestCurrentLoginUser(() => {
+          this.router.navigateByUrl('dashboard');
+      }); }, () => {
+        this.errorInfo = '登录失败，请检查您的用户名、密码';
+      });
   }
 
   sendVerificationCode(): void {

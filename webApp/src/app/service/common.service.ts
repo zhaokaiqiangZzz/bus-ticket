@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
 import swal, {SweetAlertIcon, SweetAlertResult} from 'sweetalert2';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {Assert, isNotNull, Random, UnknownProperty, Utils} from '../utils';
+import {Assert, convertToLoadingFormat, isNotNullOrUndefined, UnknownProperty} from 'core';
 import {NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import * as FileSaver from 'file-saver';
 import {HttpErrorResponse} from '../base/Http-error-response';
+import {Random} from '../../../../core/src/lib/testing/utils';
 
 /**
  * 应用程序准备完毕的影响元素
@@ -95,7 +97,7 @@ export class CommonService {
       return true;
     }
 
-    if (Utils.isNotNull(item1) && Utils.isNotNull(item2)) {
+    if (isNotNullOrUndefined(item1) && isNotNullOrUndefined(item2)) {
       return item1.id === item2.id;
     }
 
@@ -231,7 +233,7 @@ export class CommonService {
    * @author zhaokaiqiang
    */
   public compareVersion(version1: string, version2: string): number {
-    Assert.notNull(version1, version2, '传入的参考不能为null');
+    Assert.isNotNullOrUndefined(version1, version2, '传入的参考不能为null');
     const versionArray1 = version1.split('\.'); // 注意此处为正则匹配，不能用"."；
     const versionArray2 = version2.split('\.');
     const minLength = Math.min(versionArray1.length, versionArray2.length); // 取最小长度值
@@ -359,7 +361,7 @@ export class CommonService {
     }
 
     const state = this.routeStates[this.routeStates.length - 1].state;
-    if (!isNotNull(state)) {
+    if (!isNotNullOrUndefined(state)) {
       return {};
     }
     return state;
@@ -509,7 +511,7 @@ export class CommonService {
       onBeforeOpen: () => {
         swal.showLoading();
         timerInterval = setInterval(() => {
-          Swal.getTitle().textContent = Utils.convertToLoadingFormat(Swal.getTitle().textContent);
+          Swal.getTitle().textContent = convertToLoadingFormat(Swal.getTitle().textContent);
           stack++;
           if (stack > maxStack) {
             clearInterval(timerInterval);
@@ -533,9 +535,19 @@ export class CommonService {
   /**
    * 获取特定长度的随机字符串
    * @param length 特定长度
+   * @deprecated 请使用test/utils.ts的同名方法
    */
   randomString(length: number): string {
     return Random.nextString('', length);
+  }
+
+  /**
+   * 保存文件
+   * @param blob 文件
+   * @param fileName 文件名
+   */
+  saveFile(blob: Blob, fileName: string): void {
+    FileSaver.saveAs(blob, fileName);
   }
 
   /**
