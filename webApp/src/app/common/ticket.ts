@@ -6,28 +6,28 @@ export class Ticket {
   id: number;
 
   /** 车次编号 */
-  route_id:number;
+  routeId: number;
 
   /** 用户编号 */
-  pay_user_id:number;
+  payUserId: number;
 
   /** 订单编号 */
-  order_id:number;
+  orderId: number;
 
   /** 单价 */
-  price:number;
+  price: number;
 
   /** 车票状态 */
-  status:string;
+  status: string;
 
-  constructor(data?:{id?:number,route_id?:number,pay_user_id?:number,order_id?:number,price?:number,status?:string}){
-    if(data){
-      this.id=data.id;
-      this.route_id=data.route_id;
-      this.pay_user_id=data.pay_user_id;
-      this.order_id=data.order_id;
-      this.price=data.price;
-      this.status=data.status;
+  constructor(data?: { id?: number, routeId?: number, payUserId?: number, orderId?: number, price?: number, status?: string }) {
+    if (data) {
+      this.id = data.id;
+      this.routeId = data.routeId;
+      this.payUserId = data.payUserId;
+      this.orderId = data.orderId;
+      this.price = data.price;
+      this.status = data.status;
     }
   }
 }

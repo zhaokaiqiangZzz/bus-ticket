@@ -6,12 +6,12 @@ export class City {
   id: number;
 
   /** 城市名 */
-  name:string;
+  name: string;
 
-  constructor(data?:{id?:number,name?:string}){
-    if(data) {
+  constructor(data?: { id?: number, name?: string }) {
+    if (data) {
       this.id = data.id;
-      this.name=data.name;
+      this.name = data.name;
     }
   }
 }

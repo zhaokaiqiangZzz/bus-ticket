@@ -6,16 +6,16 @@ export class Bus {
   id: number;
 
   /** 车牌号 */
-  bus_number:string;
+  busNumber: string;
 
   /** 最大座位数 */
-  seat_number:number;
+  seatNumber: number;
 
-  constructor(data?:{id?:number,bus_number?:string,seat_number?:number}){
-  if(data) {
-    this.id = data.id;
-    this.bus_number = data.bus_number;
-    this.seat_number = data.seat_number;
-  }
+  constructor(data?: { id?: number, busNumber?: string, seatNumber?: number }) {
+    if (data) {
+      this.id = data.id;
+      this.busNumber = data.busNumber;
+      this.seatNumber = data.seatNumber;
+    }
   }
 }

@@ -6,27 +6,27 @@ export class Order {
   id: number;
 
   /** 订单时间 */
-  order_time: string;
+  orderTime: string;
 
   /** 支付时间 */
-  pay_time: string;
+  payTime: string;
 
   /** 订单状态 */
   status: string;
 
   /** 用户编号 */
-  ride_user_id: number;
+  userId: number;
 
   /** 总价 */
   price: string;
 
-  constructor(data?: { id?: number, order_time?: string, pay_time?: string, status?: string, ride_user_id?: number, price?: string }) {
+  constructor(data?: { id?: number, orderTime?: string, payTime?: string, status?: string, userId?: number, price?: string }) {
     if (data) {
       this.id = data.id;
-      this.order_time = data.order_time;
-      this.pay_time = data.pay_time;
+      this.orderTime = data.orderTime;
+      this.payTime = data.payTime;
       this.status = data.status;
-      this.ride_user_id = data.ride_user_id;
+      this.userId = data.userId;
       this.price = data.price;
     }
   }
