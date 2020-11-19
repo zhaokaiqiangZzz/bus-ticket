@@ -16,6 +16,7 @@ public class User extends YunzhiBase implements YunzhiEntity {
      * 正常的用户状态
      */
     public static final Long UN_DELETED = 0L;
+    public static final Boolean ADMIN = true;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

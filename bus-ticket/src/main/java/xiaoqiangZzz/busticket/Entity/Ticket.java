@@ -15,11 +15,7 @@ public class Ticket {
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private Order order;
+    private Orders orders;
 
     private float price;
 
@@ -42,20 +38,12 @@ public class Ticket {
         this.route = route;
     }
 
-    public User getUser() {
-        return user;
+    public Orders getOrders() {
+        return orders;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrders(Orders orders) {
+        this.orders = orders;
     }
 
     public float getPrice() {

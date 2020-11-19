@@ -1,10 +1,12 @@
 package xiaoqiangZzz.busticket.Entity;
 
 
+import com.mengyunzhi.core.entity.YunzhiEntity;
+
 import javax.persistence.*;
 
 @Entity
-public class Route {
+public class Route implements YunzhiEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

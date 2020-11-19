@@ -1,26 +1,26 @@
 package xiaoqiangZzz.busticket.Entity;
 
 
-import org.springframework.data.annotation.CreatedDate;
+import com.mengyunzhi.core.entity.YunzhiEntity;
 
 import javax.persistence.*;
 
+
 @Entity
-public class Order {
+public class Orders implements YunzhiEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CreatedDate
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private User user;
+
     private Long orderTime;
 
     private Long payTime;
 
     private int status;
-
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private User user;
 
     private float price;
 

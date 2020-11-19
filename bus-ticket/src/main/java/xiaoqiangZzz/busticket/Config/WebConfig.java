@@ -1,7 +1,5 @@
 package xiaoqiangZzz.busticket.Config;
 
-import club.yunzhi.questionnaire.Entity.User;
-import club.yunzhi.questionnaire.Service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +13,8 @@ import org.springframework.web.method.HandlerTypePredicate;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import xiaoqiangZzz.busticket.Entity.User;
+import xiaoqiangZzz.busticket.Service.UserService;
 
 import java.util.List;
 import java.util.Optional;

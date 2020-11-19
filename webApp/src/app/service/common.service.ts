@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import swal, {SweetAlertIcon, SweetAlertResult} from 'sweetalert2';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {Assert, convertToLoadingFormat, isNotNullOrUndefined, UnknownProperty} from 'core';
 import {NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import * as FileSaver from 'file-saver';
 import {HttpErrorResponse} from '../base/Http-error-response';
-import {Random} from '../../../../core/src/lib/testing/utils';
+import { Assert, convertToLoadingFormat, Random, UnknownProperty } from '../utils';
+import { isNotNullOrUndefined } from 'codelyzer/util/isNotNullOrUndefined';
 
 /**
  * 应用程序准备完毕的影响元素
@@ -233,7 +233,7 @@ export class CommonService {
    * @author zhaokaiqiang
    */
   public compareVersion(version1: string, version2: string): number {
-    Assert.isNotNullOrUndefined(version1, version2, '传入的参考不能为null');
+    Assert.notNull(version1, version2, '传入的参考不能为null');
     const versionArray1 = version1.split('\.'); // 注意此处为正则匹配，不能用"."；
     const versionArray2 = version2.split('\.');
     const minLength = Math.min(versionArray1.length, versionArray2.length); // 取最小长度值

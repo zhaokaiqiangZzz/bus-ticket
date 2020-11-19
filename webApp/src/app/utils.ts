@@ -195,6 +195,27 @@ export function isNotNull<T>(value: T | undefined | null): value is T {
 }
 
 /**
+ * 转换为loading字样
+ * @param target 目标字符串
+ * @param suffix 后缀
+ * @param length 长度
+ * @example
+ * '请稍候' => '请稍候.'
+ * '请稍候.' => '请稍候..'
+ * '请稍候..' => '请稍候...'
+ * '请稍候...' => '请稍候'
+ */
+export function convertToLoadingFormat(target: string, suffix = '.', length = 3): string {
+  const strings = target.split(suffix);
+  if (strings.length <= length) {
+    target += '.';
+  } else {
+    target = strings[0];
+  }
+  return target;
+}
+
+/**
  * 是否被定义
  * undefined -> false
  * other -> true
