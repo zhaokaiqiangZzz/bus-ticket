@@ -3,7 +3,6 @@ import { Observable, of } from 'rxjs';
 import { Page } from '../base/page';
 import { User } from '../common/user';
 import { HttpClient } from '@angular/common/http';
-import { Assert } from '../../../../core/src/utils';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { catchError, map } from 'rxjs/operators';
 
@@ -38,16 +37,6 @@ export class UserService {
    */
   public delete(userId: number): Observable<null> {
     return this.httpClient.delete<null>(`${this.baseUrl}/${userId.toString()}`);
-  }
-
-  /**
-   * 重置密码
-   * @param id 用户id
-   */
-  public resetPassword(id: number): Observable<void> {
-    Assert.isNotNullOrUndefined(id, 'id未传入');
-    const url = `${this.baseUrl}/resetPassword/${id}`;
-    return this.httpClient.patch<void>(url, {});
   }
 
   /**

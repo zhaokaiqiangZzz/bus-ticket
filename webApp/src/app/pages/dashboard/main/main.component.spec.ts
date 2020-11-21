@@ -42,7 +42,7 @@ describe('page -> dashboard -> MainComponent', () => {
   /**
    * 保证后台返回的数据符合组件的要求
    */
-  it('should create', () => {
+  fit('should create', () => {
     // 以下代码说明组件初始化没出错
     expect(component).toBeTruthy();
 

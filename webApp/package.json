@@ -29,7 +29,8 @@
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2",
     "jasmine-marbles": "^0.6.0",
-    "file-saver": "^2.0.2"
+    "file-saver": "^2.0.2",
+    "@types/file-saver": "^2.0.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1002.0",
