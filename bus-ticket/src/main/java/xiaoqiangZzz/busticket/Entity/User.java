@@ -35,16 +35,9 @@ public class User extends YunzhiBase implements YunzhiEntity {
     private String password;
 
     /**
-     * 性别
-     * false: 男
-     * true:  女
+     * 姓名
      */
-    private Boolean sex = false;
-
-    /**
-     * 手机号
-     */
-    private String phone;
+    private String name;
 
     /** 身份证号 */
     private String identityId;
@@ -88,14 +81,6 @@ public class User extends YunzhiBase implements YunzhiEntity {
         this.password = BeanService.getPasswordEncoder().encode(password);
     }
 
-    public Boolean getSex() {
-        return this.sex;
-    }
-
-    public void setSex(Boolean sex) {
-        this.sex = sex;
-    }
-
     /**
      * 校验密码
      *
@@ -114,12 +99,12 @@ public class User extends YunzhiBase implements YunzhiEntity {
         isAdmin = admin;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getName() {
+        return name;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getIdentityId() {

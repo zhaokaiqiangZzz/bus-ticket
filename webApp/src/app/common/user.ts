@@ -12,7 +12,7 @@ export class User {
   password: string;
 
   /** 手机号 */
-  phone: number;
+  name: string;
 
   /** 身份证号 */
   identityId: string;
@@ -20,12 +20,12 @@ export class User {
   /** 用户权限 */
   role: number;
 
-  constructor(data?: { id?: number, username?: string, password?: string, phone?: number, identityId?: string, role?: number }) {
+  constructor(data?: { id?: number, username?: string, password?: string, name?: string, identityId?: string, role?: number }) {
     if (data) {
       this.id = data.id;
       this.username = data.username;
       this.password = data.password;
-      this.phone = data.phone;
+      this.name = data.name;
       this.identityId = data.identityId;
       this.role = data.role;
     }

@@ -110,4 +110,12 @@ export class AuthService {
       }
     });
   }
+
+  /**
+   * 用户注册
+   * @param student 用户
+   */
+  register(user: User): Observable<void> {
+    return this.httpClient.post<void>(`${this.baseDir}/register`, user);
+  }
 }

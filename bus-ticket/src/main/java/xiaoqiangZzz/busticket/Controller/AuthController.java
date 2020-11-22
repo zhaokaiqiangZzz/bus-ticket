@@ -7,9 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import xiaoqiangZzz.busticket.Constant.AuthConst;
 import xiaoqiangZzz.busticket.Entity.User;
 import xiaoqiangZzz.busticket.Service.CacheService;
@@ -66,6 +64,13 @@ public class AuthController {
         if (authentication != null) {
             new SecurityContextLogoutHandler().logout(request, response, authentication);
         }
+    }
+
+    @PostMapping("register")
+    public void register(@RequestBody User user) {
+        logger.debug("保存");
+        System.out.println(user.getPassword());
+        userService.saveWithPassword(user);
     }
 
     @GetMapping("user")
