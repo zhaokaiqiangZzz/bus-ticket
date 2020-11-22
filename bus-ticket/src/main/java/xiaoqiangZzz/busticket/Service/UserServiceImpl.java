@@ -1,9 +1,5 @@
 package xiaoqiangZzz.busticket.Service;
 
-import club.yunzhi.questionnaire.Entity.User;
-import club.yunzhi.questionnaire.Input.PUser;
-import club.yunzhi.questionnaire.Input.VUser;
-import club.yunzhi.questionnaire.Repository.UserRepository;
 import com.mengyunzhi.core.exception.ObjectNotFoundException;
 import com.mengyunzhi.core.service.CommonService;
 import com.mengyunzhi.core.service.YunzhiService;
@@ -14,6 +10,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import xiaoqiangZzz.busticket.Entity.User;
+import xiaoqiangZzz.busticket.Input.PUser;
+import xiaoqiangZzz.busticket.Input.VUser;
+import xiaoqiangZzz.busticket.Repository.UserRepository;
 
 import javax.persistence.EntityNotFoundException;
 import javax.xml.bind.ValidationException;
@@ -101,10 +101,8 @@ public class UserServiceImpl implements UserService{
 
         logger.debug("判断是否传入name");
         if (name != null) {
-            user.setName(name);
+            user.setUsername(name);
         }
-
-        user.setDeleteAt(User.UN_DELETED);
 
         return this.yunzhiService.page(this.userRepository, user, pageable);
     }
@@ -114,7 +112,6 @@ public class UserServiceImpl implements UserService{
     public User update(Long id, User user) {
         User oldUser = this.getUserById(id);
         oldUser.setUsername(user.getUsername());
-        oldUser.setName(user.getName());
         oldUser.setSex(user.getSex());
         return this.userRepository.save(oldUser);
     }

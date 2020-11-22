@@ -1,7 +1,5 @@
 package xiaoqiangZzz.busticket.Security;
 
-import club.yunzhi.questionnaire.Entity.User;
-import club.yunzhi.questionnaire.Repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import xiaoqiangZzz.busticket.Entity.User;
+import xiaoqiangZzz.busticket.Repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;

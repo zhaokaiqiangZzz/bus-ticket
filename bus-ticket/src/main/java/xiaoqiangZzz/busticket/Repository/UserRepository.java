@@ -1,8 +1,8 @@
 package xiaoqiangZzz.busticket.Repository;
 
-import club.yunzhi.questionnaire.Entity.User;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
+import xiaoqiangZzz.busticket.Entity.User;
 
 import javax.transaction.Transactional;
 import java.util.Optional;

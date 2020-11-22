@@ -1,13 +1,13 @@
 package xiaoqiangZzz.busticket.Config;
 
-import club.yunzhi.questionnaire.Service.CacheService;
-import club.yunzhi.questionnaire.Service.CacheServiceImpl;
 import com.mengyunzhi.core.service.YunzhiService;
 import com.mengyunzhi.core.service.YunzhiServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import xiaoqiangZzz.busticket.Service.CacheService;
+import xiaoqiangZzz.busticket.Service.CacheServiceImpl;
 
 @Configuration
 public class YunzhiConfig {

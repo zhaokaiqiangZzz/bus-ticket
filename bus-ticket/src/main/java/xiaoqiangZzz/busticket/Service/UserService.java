@@ -1,17 +1,17 @@
 package xiaoqiangZzz.busticket.Service;
 
-import club.yunzhi.questionnaire.Entity.User;
-import club.yunzhi.questionnaire.Input.PUser;
-import club.yunzhi.questionnaire.Input.VUser;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import xiaoqiangZzz.busticket.Entity.User;
+import xiaoqiangZzz.busticket.Input.PUser;
+import xiaoqiangZzz.busticket.Input.VUser;
 
 import javax.xml.bind.ValidationException;
 import java.util.List;
 
-public interface UserService {
-    static User getOneUser() {
+    public interface UserService {
+        static User getOneUser() {
         User user = new User();
         user.setUsername(RandomString.make(10));
         user.setPassword(RandomString.make(10));
