@@ -14,10 +14,10 @@ public interface UserRepository extends CrudRepository<User, Long>, JpaSpecifica
     long count();
 
     /**
-     * 根据用户名查询用户
+     * 根据名字查询用户
      */
     @Transactional
-    User findByUsername(String username);
+    User findByName(String name);
 
     @Transactional
     Optional<User> findById(Long id);
@@ -32,4 +32,7 @@ public interface UserRepository extends CrudRepository<User, Long>, JpaSpecifica
 
     @Transactional
     Iterable<User> findAllById(Iterable<Long> ids);
+
+    @Transactional
+    User findByUsername(String username);
 }

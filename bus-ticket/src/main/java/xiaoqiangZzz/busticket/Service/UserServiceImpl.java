@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import xiaoqiangZzz.busticket.Entity.User;
 import xiaoqiangZzz.busticket.Input.PUser;
 import xiaoqiangZzz.busticket.Input.VUser;
@@ -60,10 +61,20 @@ public class UserServiceImpl implements UserService{
 
         logger.debug("根据认证信息查询用户");
         if (authentication != null && authentication.isAuthenticated()) {
-            user = userRepository.findByUsername(authentication.getName());
+            user = userRepository.findByName(authentication.getName());
         }
 
         return user;
+    }
+
+    @Override
+    public void saveWithPassword(User user) {
+        Assert.notNull(user, "用户信息不能为空");
+        Assert.notNull(user.getName(), "用户姓名不能为空");
+        Assert.notNull(user.getUsername(), "用户用户名不能为空");
+        Assert.notNull(user.getIdentityId(), "用户身份证号不能为空");
+        Assert.notNull(user.getPassword(), "对应密码不能为空");
+        this.userRepository.save(user);
     }
 
     public User getOneSavedUser() {
@@ -84,7 +95,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public Boolean isUsernameExist(String username) {
         logger.debug("根据新手机号查询用户");
-        User user = this.userRepository.findByUsername(username);
+        User user = this.userRepository.findByName(username);
 
         logger.debug("验证用户是否存在");
         if (user != null) {
@@ -111,8 +122,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public User update(Long id, User user) {
         User oldUser = this.getUserById(id);
-        oldUser.setUsername(user.getUsername());
-        oldUser.setSex(user.getSex());
+        oldUser.setName(user.getName());
         return this.userRepository.save(oldUser);
     }
 
@@ -178,7 +188,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Boolean existByPhone(String phoneNumber) {
-        return this.userRepository.findByUsername(phoneNumber) != null;
+        return this.userRepository.findByName(phoneNumber) != null;
     }
 
 

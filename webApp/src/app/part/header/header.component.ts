@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import {isNotNullOrUndefined} from 'codelyzer/util/isNotNullOrUndefined';
+import {AuthService} from '../../service/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   constructor(private router: Router,
-              // private authService: AuthService
+              private authService: AuthService
               ) {
   }
 
@@ -34,15 +35,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logout(): void {
-    /**
-     * complete 时跳转
-     */
-    // this.authService.logout()
-    //   .subscribe(() => {
-    //     this.router.navigateByUrl('auth');
-    //   }, () => {
-    //     this.router.navigateByUrl('auth');
-    //   });
+      this.authService.logout()
+        .subscribe(() => {
+        }, () => {
+        }, () => {
+          this.router.navigateByUrl('login');
+        });
   }
 
   ngOnDestroy(): void {

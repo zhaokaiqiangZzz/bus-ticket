@@ -39,8 +39,8 @@ public class InitTestUser implements ApplicationListener<ContextRefreshedEvent> 
         }
 
         User user = new User();
-        user.setUsername("8848");
-        user.setPhone("111111");
+        user.setUsername("123456");
+        user.setName("赵凯强");
         user.setIdentityId("111111");
         user.setPassword("admin");
         user.setAdmin(User.ADMIN);

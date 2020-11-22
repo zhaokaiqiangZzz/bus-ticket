@@ -144,4 +144,6 @@ import java.util.List;
      * @return
      */
     User getCurrentLoginUser();
-}
+
+    void saveWithPassword(User user);
+    }

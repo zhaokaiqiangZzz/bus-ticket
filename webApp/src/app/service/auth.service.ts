@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../common/user';
 import { Observable, ReplaySubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import { AppOnReadyItem, CommonService } from './common.service';
 import { Router } from '@angular/router';
 
@@ -109,5 +109,22 @@ export class AuthService {
         callback();
       }
     });
+  }
+
+  /**
+   * 用户注册
+   * @param student 用户
+   */
+  register(user: User): Observable<void> {
+    return this.httpClient.post<void>(`${this.baseDir}/register`, user);
+  }
+
+  /**
+   * 用户注销
+   */
+  logout(): Observable<void> {
+    return this.httpClient.get<void>(`${this.baseDir}/logout`).pipe(map(() => {
+      this.setCurrentLoginUser(null);
+    }));
   }
 }
