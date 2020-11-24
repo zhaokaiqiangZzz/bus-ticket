@@ -7,6 +7,7 @@ import { ModifyPasswordComponent } from './modify-password/modify-password.compo
 import { ModifyPhoneComponent } from './modify-phone/modify-phone.component';
 import { AppModule } from '../../app.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import {YzSubmitButtonModule} from '../../func/yz-submit-button/yz-submit-button.module';
 
 
 @NgModule({
@@ -14,8 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     PersonalRoutingModule,
-    AppModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    YzSubmitButtonModule
   ]
 })
 export class PersonalModule { }

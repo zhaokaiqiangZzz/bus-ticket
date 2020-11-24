@@ -23,6 +23,13 @@ const routes: Routes = [
           title: '仪表盘'
         }
       },
+      {
+        path: 'personal',
+        loadChildren: () => import('./pages/personal/personal.module').then(m => m.PersonalModule),
+        data: {
+          title: '个人中心'
+        }
+      },
       // {
       //   path: 'user',
       //   loadChildren: () => import('./pages/admin/user/user-index/user-index.module').then(m => m.UserIndexModule),

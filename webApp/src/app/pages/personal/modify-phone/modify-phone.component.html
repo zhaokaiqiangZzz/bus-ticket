@@ -13,27 +13,6 @@
     </div>
   </div>
   <br/>
-  <div class="row">
-    <div class="col-md-4 offset-md-2">
-      <div class="row">
-        <div class="col-md-4 text-right">
-          <label for="verificationCode">验证码<code>*</code></label>
-        </div>
-        <div class="col-md-8">
-          <div class="input-group">
-            <input type="text" class="form-control" id="verificationCode" placeholder="请输入验证码"
-                   formControlName="verificationCode"/>
-            <div class="input-group-append">
-<!--              <button type="button" class=" btn btn-sm"-->
-<!--                      [ngClass]="{'btn-success': !verificationCodeButtonDisabled, 'btn-secondary': verificationCodeButtonDisabled}"-->
-<!--                      (click)="sendVerificationCode()"-->
-<!--                      [disabled]="verificationCodeButtonDisabled">{{ validateCodeInfo }}</button>-->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <ng-template [ngIf]="showErrorInfo">
     <div class="row">
       <div class="col-md-6 text-right">
@@ -71,25 +50,6 @@
 <!--    </div>-->
 <!--  </ng-template>-->
   <br/>
-  <div class="row">
-    <div class="col-md-4 offset-md-2">
-      <div class="row">
-        <div class="col-md-4 text-right">
-          <label for="verificationCode">验证码<code>*</code></label>
-        </div>
-        <div class="col-md-8">
-          <div class="input-group">
-            <input type="text" class="form-control" id="code" placeholder="请输入验证码" formControlName="code"/>
-            <div class="input-group-append">
-<!--              <button type="button" class="btn btn-sm"-->
-<!--                      [ngClass]="{'btn-success': !codeButtonDisabled, 'btn-secondary': codeButtonDisabled}"-->
-<!--                      (click)="sendCode()" [disabled]="codeButtonDisabled">{{ codeInfo }}</button>-->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <ng-template [ngIf]="showErrorCodeInfo">
     <div class="row">
       <div class="col-md-6 text-right">

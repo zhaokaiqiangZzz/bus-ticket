@@ -35,4 +35,6 @@ export class ModifyPasswordComponent implements OnInit {
     );
   }
 
+  submit(): void {
+  }
 }

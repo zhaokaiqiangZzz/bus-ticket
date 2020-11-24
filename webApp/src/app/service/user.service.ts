@@ -5,6 +5,7 @@ import { User } from '../common/user';
 import { HttpClient } from '@angular/common/http';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { catchError, map } from 'rxjs/operators';
+import {PUser} from '../base/puser';
 
 @Injectable({
   providedIn: 'root'
@@ -83,5 +84,15 @@ export class UserService {
    */
   public update(userId: number, user: User): Observable<User> {
     return this.httpClient.put<User>(`${this.baseUrl}/${userId.toString()}`, user);
+  }
+
+  /**
+   * 更新手机号
+   */
+  public updatePhoneNumber(phoneNumber: string):
+    Observable<User> {
+    const pUser = new PUser();
+    pUser.newPhoneNumber = phoneNumber;
+    return this.httpClient.put<User>(`${this.baseUrl}/updatePhone`, pUser);
   }
 }

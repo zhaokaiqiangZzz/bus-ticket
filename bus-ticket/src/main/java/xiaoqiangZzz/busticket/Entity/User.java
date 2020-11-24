@@ -16,7 +16,7 @@ public class User extends YunzhiBase implements YunzhiEntity {
      * 正常的用户状态
      */
     public static final Long UN_DELETED = 0L;
-    public static final Boolean ADMIN = true;
+    public static final int ADMIN = 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class User extends YunzhiBase implements YunzhiEntity {
     /**
      * 是否是超级管理员
      */
-    private Boolean isAdmin = false;
+    private int role = 0;
 
     /**
      * 密码
@@ -91,14 +91,6 @@ public class User extends YunzhiBase implements YunzhiEntity {
         return BeanService.getPasswordEncoder().matches(password, this.password);
     }
 
-    public Boolean getAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(Boolean admin) {
-        isAdmin = admin;
-    }
-
     public String getName() {
         return name;
     }
@@ -113,6 +105,14 @@ public class User extends YunzhiBase implements YunzhiEntity {
 
     public void setIdentityId(String identityId) {
         this.identityId = identityId;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 
     public interface PasswordJsonView {

@@ -5,6 +5,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 import { AppOnReadyItem, CommonService } from './common.service';
 import { Router } from '@angular/router';
+import {Utils} from '../utils';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,7 @@ export class AuthService {
               private commonService: CommonService) {
     this.appOnReadyItem = this.commonService.getAppOnReadyItem();
     // 如果当前不是登录模块，请求当前登录用户
-    if (!this.router.url.startsWith(`/login`)) {
+    if (!this.router.url.includes(`${this.baseDir}`)) {
       this.requestCurrentLoginUser();
     } else {
       this.appOnReadyItem.ready = true;
@@ -59,6 +60,17 @@ export class AuthService {
     // 发起get请求并返回
     return this.httpClient.get<User>(`${this.baseDir}/login`, {headers}).pipe(tap((data) => {
     }));
+  }
+
+  /**
+   * 获取当前登录用户
+   * 该方法需要配合appOnReady使用
+   */
+  getCurrentLoginUser(): User {
+    if (!Utils.isNotNull(this.currentLoginUser)) {
+      throw new Error('当前登录用户为null，请使用`commonService.appOnReady(() => { 这里是代码 })`启动组件');
+    }
+    return this.currentLoginUser;
   }
 
   /**
