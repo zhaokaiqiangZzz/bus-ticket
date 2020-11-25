@@ -17,7 +17,7 @@
     </div>
   </div>
   <div class="content">
-    <div class="row m-0 pt-5">
+    <div class="row m-0 pt-3">
       <div class="col-md-2 offset-md-8 mt-2 pl-3 pr-3 pt-4 pb-4 bg-white">
         <div class="row">
           <div class="col-md-6 border-right">
@@ -68,58 +68,59 @@
             <label for="register-username">
               <small>手机号<code>*</code></small>
             </label>
-            <input class="form-control form-control-sm" id="register-username" placeholder="请输入手机号" formControlName="registerUsername"/>
+            <input class="form-control form-control-sm" id="register-username" placeholder="请输入手机号" formControlName="registerUsername" style="float:left"/>
           </div>
-          <div class="row-1 mt-1" *ngIf="registerUsername.invalid && (registerUsername.dirty || registerUsername.touched)">
+          <div class="row-1 mt-1" *ngIf="registerUsername.invalid && (registerUsername.dirty || registerUsername.touched)" >
             <small class="text-danger" *ngIf="registerUsername.errors?.pattern">
-              <i class="fa fa-exclamation-triangle"></i>手机号格式不正确</small>
-            <small class="text-danger" *ngIf="registerUsername.errors?.required">
+              <i class="fa fa-exclamation-triangle" style="display: flex"></i>手机号格式不正确</small>
+            <small class="text-danger" *ngIf="registerUsername.errors?.required" >
               <i class="fa fa-exclamation-triangle"></i>手机号不能为空</small>
           </div>
+
           <div class="form-group">
             <label for="register-name">
               <small>姓名<code>*</code></small>
             </label>
-            <input class="form-control form-control-sm" id="register-name" placeholder="请输入姓名" formControlName="name"/>
+            <input class="form-control form-control-sm" id="register-name" placeholder="请输入姓名" formControlName="name"  style="float:left"/>
           </div>
           <div class="row-1 mt-1" *ngIf="name.invalid && (name.dirty || name.touched)">
-            <p class="text-danger" *ngIf="name?.errors?.pattern">
-              <i class="fa fa-exclamation-triangle"></i>姓名格式不正确</p>
-            <p class="text-danger" *ngIf="name?.errors?.required">
-              <i class="fa fa-exclamation-triangle"></i>姓名不能为空</p>
+            <small class="text-danger" *ngIf="name?.errors?.pattern">
+              <i class="fa fa-exclamation-triangle" ></i>姓名格式不正确</small>
+            <small class="text-danger" *ngIf="name?.errors?.required">
+              <span class="fa fa-exclamation-triangle"></span>姓名不能为空</small>
+<!--            <div style="float: left; width: 0;height: 0;border-top: 7px solid transparent;border-bottom: 1px solid transparent;border-right: 10px solid #ff4e4e;"></div>-->
+<!--            <div><span style="background-color:#ff4e4e;color: white;padding: 4px;border-radius: 4px;">姓名格式错误</span></div>-->
           </div>
           <div class="form-group">
             <label for="register-identity-id">
               <small>身份证号<code>*</code></small>
             </label>
-            <input class="form-control form-control-sm" id="register-identity-id" placeholder="请输入手机号" formControlName="identityId"/>
+            <input class="form-control form-control-sm" id="register-identity-id" placeholder="请输入手机号" formControlName="identityId" style="float:left"/>
           </div>
           <div class="row-1 mt-1" *ngIf="identityId.invalid && (identityId.dirty || identityId.touched)">
-            <p class="text-danger" *ngIf="identityId?.errors?.pattern">
-              <i class="fa fa-exclamation-triangle"></i>身份证号格式不正确</p>
-            <p class="text-danger" *ngIf="identityId?.errors?.required">
-              <i class="fa fa-exclamation-triangle"></i>身份证号不能为空</p>
+            <small class="text-danger" *ngIf="identityId?.errors?.pattern">
+              <i class="fa fa-exclamation-triangle" ></i>身份证号格式不正确</small>
+            <small class="text-danger" *ngIf="identityId?.errors?.required">
+              <i class="fa fa-exclamation-triangle"></i>身份证号不能为空</small>
           </div>
           <div class="form-group">
             <label for="register-password">
               <small>密码<code>*</code></small>
             </label>
             <input type="password" class="form-control form-control-sm" id="register-password" placeholder="请输入密码"
-                   formControlName="password"/>
+                   formControlName="password" style="float:left"/>
           </div>
           <div class="form-group">
             <label for="register-confirm-password">
               <small>确认密码<code>*</code></small>
             </label>
             <input type="password" class="form-control form-control-sm" id="register-confirm-password"
-                   placeholder="请确认密码" formControlName="confirmPassword"/>
+                   placeholder="请确认密码" formControlName="confirmPassword" style="float:left"/>
           </div>
           <ng-template [ngIf]="registerForm.errors && registerForm.errors.mismatch">
-            <hr>
             <small class="text-danger">两次输入的密码不一致</small>
           </ng-template>
           <ng-template [ngIf]="showRegisterErrorInfo">
-            <hr>
             <small class="text-danger">{{ registerErrorInfo }}</small>
           </ng-template>
           <hr>
