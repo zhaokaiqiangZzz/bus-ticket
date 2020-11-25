@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService{
 
         logger.debug("根据认证信息查询用户");
         if (authentication != null && authentication.isAuthenticated()) {
-            user = userRepository.findByName(authentication.getName());
+            user = userRepository.findByUsername(authentication.getName());
         }
 
         return user;
@@ -164,12 +164,12 @@ public class UserServiceImpl implements UserService{
         logger.debug("获取当前用户");
         User currentUser = this.getCurrentLoginUser();
 
-        logger.debug("验证密码是否匹配");
-
-        logger.debug("校验旧密码是否正确");
-        if (!currentUser.verifyPassword(pUser.getPassword())) {
-            throw new ValidationException("旧密码不正确");
-        }
+//        logger.debug("验证密码是否匹配");
+//
+//        logger.debug("校验旧密码是否正确");
+//        if (!currentUser.verifyPassword(pUser.getPassword())) {
+//            throw new ValidationException("旧密码不正确");
+//        }
 
         logger.debug("更新手机号(用户名)");
         currentUser.setUsername(pUser.getNewPhoneNumber());

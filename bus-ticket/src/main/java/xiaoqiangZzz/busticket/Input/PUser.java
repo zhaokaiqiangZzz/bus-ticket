@@ -10,16 +10,15 @@ public class PUser {
      */
     private String newPhoneNumber;
 
-    /**
-     * 密码
-     */
-
-    private String password;
-
-
-    public String getPassword() {
-        return password;
-    }
+//    /**
+//     * 密码
+//     */
+//    private String password;
+//
+//
+//    public String getPassword() {
+//        return password;
+//    }
 
     public String getNewPhoneNumber() {
         return newPhoneNumber;

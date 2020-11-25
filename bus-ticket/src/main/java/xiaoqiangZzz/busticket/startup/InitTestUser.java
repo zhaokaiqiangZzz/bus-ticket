@@ -43,7 +43,7 @@ public class InitTestUser implements ApplicationListener<ContextRefreshedEvent> 
         user.setName("赵凯强");
         user.setIdentityId("111111");
         user.setPassword("admin");
-        user.setAdmin(User.ADMIN);
+        user.setRole(User.ADMIN);
         users.add(user);
 
         logger.debug("保存");

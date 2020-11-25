@@ -104,7 +104,7 @@ public class UserController {
     }
 
     @PutMapping("updatePhone")
-    @Secured(YunzhiSecurityRole.ROLE_PERSONAL)
+//    @Secured(YunzhiSecurityRole.ROLE_PERSONAL)
     public void updatePhone(@RequestBody PUser pUser) throws ValidationException {
         this.userService.updatePhone(pUser);
     }

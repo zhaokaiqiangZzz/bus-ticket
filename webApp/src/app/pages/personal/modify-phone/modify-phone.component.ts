@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-class UniqueUsernameValidator {
-}
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Subscription} from 'rxjs';
+import {UserService} from '../../../service/user.service';
+import {Router} from '@angular/router';
+import {CommonService} from '../../../service/common.service';
+import {AuthService} from '../../../service/auth.service';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-modify-phone',
@@ -11,6 +14,8 @@ class UniqueUsernameValidator {
 })
 export class ModifyPhoneComponent implements OnInit {
   userForm: FormGroup;
+
+  subscription: Subscription;
 
   /** 错误信息 */
   errorInfo: string;
@@ -24,38 +29,66 @@ export class ModifyPhoneComponent implements OnInit {
   /** 显示错误信息 */
   showErrorCodeInfo: boolean;
 
-  /** 验证码按钮 是否禁用 */
-  verificationCodeButtonDisabled = true;
-
-  /** 验证码按钮 是否禁用 */
-  codeButtonDisabled = true;
-
-  /** 验证码按钮提示信息 */
-  validateCodeInfo = '发送验证码';
-
-  /** 验证码按钮提示信息 */
-  codeInfo = '发送验证码';
-
 
   submitting = false;
-  phoneNumber: any;
 
-  constructor(private builder: FormBuilder) {
+  constructor(private userService: UserService,
+              private builder: FormBuilder,
+              private router: Router,
+              private commonService: CommonService,
+              private authService: AuthService) {
     this.createForm();
   }
+
   createForm(): void {
     this.userForm = this.builder.group({
       username: [{value: '', disabled: true}, Validators.required],
-      verificationCode: ['', Validators.required],
-      phoneNumber: ['', [Validators.required]],
-      code: ['', Validators.required]
+      phoneNumber: ['', [Validators.required]]
     });
   }
 
-  ngOnInit(): void {
+  initForm(currentUser): void {
+    if (currentUser) {
+      this.userForm.patchValue({
+        username: currentUser.username,
+      });
+    }
   }
 
-  nextStep(): void {
+  ngOnInit(): void {
+    this.commonService.appOnReady(() => {
+      this.init();
+    });
+  }
 
+  init(): void {
+    this.subscription = this.authService.getCurrentLoginUser$()
+      .subscribe((currentUser) => this.initForm(currentUser));
+  }
+
+  get phoneNumber(): AbstractControl {
+    return this.userForm.get('phoneNumber');
+  }
+
+  /**
+   * 修改手机号
+   */
+  nextStep(): void {
+    this.submitting = true;
+    this.userService.updatePhoneNumber(this.userForm.get('username').value)
+      .subscribe(() => {
+        this.submitting = false;
+        this.commonService.success(() => {
+          // 修改手机号后注销
+          this.authService.logout().subscribe(() => {
+            this.router.navigateByUrl('login');
+          }, () => {
+            this.router.navigateByUrl('login');
+          });
+        }, '手机号修改成功');
+      }, (response: HttpErrorResponse) => {
+        this.submitting = false;
+        this.commonService.httpError(response);
+      });
   }
 }
