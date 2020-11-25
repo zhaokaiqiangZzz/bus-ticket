@@ -16,13 +16,13 @@ const routes: Routes = [
       title: '修改密码'
     }
   },
-  {
-    path: 'modifyPhone',
-    component: ModifyPhoneComponent,
-    data: {
-      title: '修改手机号'
-    }
-  },
+  // {
+  //   path: 'modifyPhone',
+  //   component: ModifyPhoneComponent,
+  //   data: {
+  //     title: '修改手机号'
+  //   }
+  // },
 ];
 
 @NgModule({

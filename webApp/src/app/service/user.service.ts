@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { catchError, map } from 'rxjs/operators';
 import {PUser} from '../base/puser';
+import {VUser} from '../base/vuser';
 
 @Injectable({
   providedIn: 'root'
@@ -94,5 +95,17 @@ export class UserService {
     const pUser = new PUser();
     pUser.newPhoneNumber = phoneNumber;
     return this.httpClient.put<User>(`${this.baseUrl}/updatePhone`, pUser);
+  }
+
+  /**
+   * 登录用户修改密码
+   * @param newPassword 新密码
+   * @param oldPassword 旧密码
+   */
+  public updatePassword(newPassword: string, oldPassword: string): Observable<void> {
+    const vUser = new VUser();
+    vUser.password = oldPassword;
+    vUser.newPassword = encodeURIComponent(newPassword);
+    return this.httpClient.put<void>(`${this.baseUrl}/updatePassword`, vUser);
   }
 }

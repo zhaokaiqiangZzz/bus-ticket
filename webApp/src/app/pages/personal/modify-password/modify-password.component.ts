@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {UserService} from '../../../service/user.service';
+import {AuthService} from '../../../service/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-modify-password',
@@ -10,7 +13,10 @@ export class ModifyPasswordComponent implements OnInit {
   modifyPasswordForm: FormGroup;
   submitting = false;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private userService: UserService,
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -36,5 +42,15 @@ export class ModifyPasswordComponent implements OnInit {
   }
 
   submit(): void {
+    this.userService.updatePassword(this.modifyPasswordForm.get('newPassword').value,
+      this.modifyPasswordForm.get('oldPassword').value)
+      .subscribe(() => {
+        this.authService.logout().subscribe(() => {
+          console.log('退出登录');
+          this.router.navigateByUrl('/login');
+        });
+      }, () => {
+        console.log('修改密码失败');
+      });
   }
 }

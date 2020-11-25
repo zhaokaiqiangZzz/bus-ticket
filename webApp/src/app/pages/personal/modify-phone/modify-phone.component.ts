@@ -81,9 +81,9 @@ export class ModifyPhoneComponent implements OnInit {
         this.commonService.success(() => {
           // 修改手机号后注销
           this.authService.logout().subscribe(() => {
-            this.router.navigateByUrl('auth');
+            this.router.navigateByUrl('login');
           }, () => {
-            this.router.navigateByUrl('auth');
+            this.router.navigateByUrl('login');
           });
         }, '手机号修改成功');
       }, (response: HttpErrorResponse) => {
