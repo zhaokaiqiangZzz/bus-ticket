@@ -19,7 +19,7 @@ export class AuthService {
    * buffer 设置为 1
    * 只保留最新的登录用户
    */
-  private currentLoginUser$ = new ReplaySubject<User>(1);
+  currentLoginUser$ = new ReplaySubject<User>(1);
 
   /**
    * 用户注销时触发的回调函数

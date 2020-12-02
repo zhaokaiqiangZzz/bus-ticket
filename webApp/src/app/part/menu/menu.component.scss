@@ -1,11 +1,11 @@
-@import "../variable.scss";
-.menu {
-  margin: 0;
-  padding: 0;
-  background-color: #F7F8FA;
-  height: calc(100vh - 78px);
-  overflow-y: auto;
-}
+@import "../variable";
+//.menu {
+//  margin: 0;
+//  padding: 0;
+//  background-color: #F7F8FA;
+//  height: calc(100vh - 78px);
+//  overflow-y: auto;
+//}
 
 .inner {
   padding: 0 35px 0 35px;
@@ -30,5 +30,12 @@ a {
 }
 
 .header {
+  background-color: #328ef4;
   height: $header-height;
 }
+
+.menu {
+  color: #ffffff;
+  text-align:center;
+}
+

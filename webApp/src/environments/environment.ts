@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  color: '#007BFF',
+  color: '#ffffff',
   title: '汽车售票平台',
   style: 'record'
 };
