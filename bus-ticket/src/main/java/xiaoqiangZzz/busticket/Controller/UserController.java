@@ -98,7 +98,7 @@ public class UserController {
     }
 
     @PutMapping("updatePassword")
-    @Secured(YunzhiSecurityRole.ROLE_PERSONAL)
+//    @Secured(YunzhiSecurityRole.ROLE_PERSONAL)
     public void updatePassword(@RequestBody VUser vUser) throws ValidationException {
         this.userService.updatePassword(vUser);
     }
