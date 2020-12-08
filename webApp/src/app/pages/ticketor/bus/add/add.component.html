@@ -1,0 +1,43 @@
+<form [formGroup]="busForm" (ngSubmit)="submit()">
+  <div class="row">
+    <div class="col-md-6 offset-md-1">
+      <div class="row">
+        <div class="col-md-4 text-right">
+          <label for="busNumber" class="form-text">车牌号<code>*</code></label>
+        </div>
+        <div class="col-md-8">
+          <input type="text" class="form-control" id="busNumber" placeholder="请输入车牌号" formControlName="busNumber" />
+        </div>
+      </div>
+      <div class="row mt-2" *ngIf="busNumber.invalid && (busNumber.dirty || busNumber.touched)">
+        <div class="col-md-8 offset-md-4">
+          <small class="text-danger" *ngIf="busNumber.errors.required">
+            <i class="fa fa-exclamation-triangle"></i>
+            车牌号必须
+          </small>
+          <small class="text-danger" *ngIf="busNumber.errors.unique">
+            <i class="fa fa-exclamation-triangle"></i>
+            车牌号已存在
+          </small>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-4 text-right">
+          <label for="seatNumber" class="form-text">最大座位数<code>*</code></label>
+        </div>
+        <div class="col-md-8">
+          <input type="number" class="form-control" id="seatNumber" placeholder="请输入车辆最大座位数" formControlName="seatNumber" />
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-8 offset-md-4">
+          <button [appYzSubmitButton]="{submitting: submitting}" class="btn btn-dark btn-sm" [disabled]="busForm.invalid" type="submit">
+            <i class="far fa-save"></i>
+            &nbsp;保存
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+

@@ -4,6 +4,8 @@ package xiaoqiangZzz.busticket.Entity;
 import com.mengyunzhi.core.entity.YunzhiEntity;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 public class Route implements YunzhiEntity {
@@ -15,9 +17,18 @@ public class Route implements YunzhiEntity {
     @JoinColumn(nullable = false)
     private Bus bus;
 
-    private Long startTime;
+    private Date startTime;
 
-    private Long endTime;
+    private Date endTime;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private City startCity;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private City endCity;
+
 
     @ManyToOne
     @JoinColumn(nullable = false)
@@ -47,22 +58,6 @@ public class Route implements YunzhiEntity {
 
     public void setBus(Bus bus) {
         this.bus = bus;
-    }
-
-    public Long getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Long startTime) {
-        this.startTime = startTime;
-    }
-
-    public Long getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Long endTime) {
-        this.endTime = endTime;
     }
 
     public Station getStartStation() {
@@ -103,5 +98,37 @@ public class Route implements YunzhiEntity {
 
     public void setDiscount(float discount) {
         this.discount = discount;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public City getStartCity() {
+        return startCity;
+    }
+
+    public void setStartCity(City startCity) {
+        this.startCity = startCity;
+    }
+
+    public City getEndCity() {
+        return endCity;
+    }
+
+    public void setEndCity(City endCity) {
+        this.endCity = endCity;
     }
 }

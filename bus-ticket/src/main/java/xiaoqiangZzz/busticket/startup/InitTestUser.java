@@ -6,7 +6,9 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import xiaoqiangZzz.busticket.Entity.City;
 import xiaoqiangZzz.busticket.Entity.User;
+import xiaoqiangZzz.busticket.Repository.CityRepository;
 import xiaoqiangZzz.busticket.Repository.UserRepository;
 
 import java.util.List;
@@ -22,10 +24,12 @@ public class InitTestUser implements ApplicationListener<ContextRefreshedEvent> 
 
     private final PasswordEncoder encoder;
     private final UserRepository userRepository;
+    private final CityRepository cityRepository;
 
-    public InitTestUser(PasswordEncoder encoder, UserRepository userRepository) {
+    public InitTestUser(PasswordEncoder encoder, UserRepository userRepository, CityRepository cityRepository) {
         this.encoder = encoder;
         this.userRepository = userRepository;
+        this.cityRepository = cityRepository;
     }
 
     @Override
@@ -48,5 +52,13 @@ public class InitTestUser implements ApplicationListener<ContextRefreshedEvent> 
 
         logger.debug("保存");
         userRepository.saveAll(users);
+
+        City city1 = new City();
+        city1.setName("上海");
+        cityRepository.save(city1);
+
+        City city2 = new City();
+        city2.setName("北京");
+        cityRepository.save(city2);
     }
 }

@@ -1,0 +1,30 @@
+<form [formGroup]="stationForm" (ngSubmit)="submit()">
+  <div class="row">
+    <div class="col-md-6 offset-md-1">
+      <div class="row">
+        <div class="col-md-4 text-right">
+          <label for="station" class="form-text">车站名称<code>*</code></label>
+        </div>
+        <div class="col-md-8">
+          <input type="text" class="form-control" name="name" id="station" placeholder="请输入车站名称" formControlName="name" />
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-4 form-text text-right">
+          <label>城市：</label>
+        </div>
+        <div class="col-md-8">
+          <app-city-select [city]="city" (citySelect)="bindCity($event)"></app-city-select>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-8 offset-md-4">
+          <button [appYzSubmitButton]="{submitting: submitting}" class="btn btn-dark btn-sm" [disabled]="stationForm.invalid" type="submit">
+            <i class="far fa-save"></i>
+            &nbsp;保存
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
