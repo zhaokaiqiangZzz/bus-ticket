@@ -1,6 +1,8 @@
 /**
  * 车站实体
  */
+import { City } from './city';
+
 export class Station {
   /** id */
   id: number;
@@ -9,13 +11,13 @@ export class Station {
   name: string;
 
   /** 城市 */
-  cityId: string;
+  city: City;
 
-  constructor(data?: { id?: number, name?: string, cityId?: string }) {
+  constructor(data?: { id?: number, name?: string, city?: City }) {
     if (data) {
       this.id = data.id;
       this.name = data.name;
-      this.cityId = data.cityId;
+      this.city = data.city;
     }
   }
 }

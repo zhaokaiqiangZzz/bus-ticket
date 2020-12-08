@@ -7,13 +7,14 @@ import {BehaviorSubject, Observable} from 'rxjs';
 })
 export class MenuService {
   private menusSubject = new BehaviorSubject<Array<Menu>>([
-    new Menu({name: '首页', url: '', roles: [Menu.ROLE_PASSENGER, Menu.ROLE_TICKETOR]}),
-    new Menu({name: '我的作业', url: 'student/work', roles: [Menu.ROLE_PASSENGER]}),
-    new Menu({name: '我的成绩', url: 'student/score', roles: [Menu.ROLE_PASSENGER]}),
-    new Menu({name: '学生管理', url: 'teacher/student', roles: [Menu.ROLE_TICKETOR]}),
-    new Menu({name: '作业管理', url: 'teacher/work', roles: [Menu.ROLE_TICKETOR]}),
-    new Menu({name: '实验项目管理', url: 'teacher/item', roles: [Menu.ROLE_TICKETOR]}),
-    new Menu({name: '个人中心', url: 'personalCenter', roles: [Menu.ROLE_TICKETOR, Menu.ROLE_PASSENGER]})
+    new Menu({name: '首页', url: 'dashboard', roles: [Menu.ROLE_PASSENGER, Menu.ROLE_TICKETOR]}),
+    new Menu({name: '车次查询', url: 'passenger/route-search', roles: [Menu.ROLE_PASSENGER]}),
+    new Menu({name: '我的车票', url: 'passenger/ticket', roles: [Menu.ROLE_PASSENGER]}),
+    // new Menu({name: '', url: 'student/score', roles: [Menu.ROLE_PASSENGER]}),
+    new Menu({name: '车次管理', url: 'ticketor/route', roles: [Menu.ROLE_TICKETOR]}),
+    new Menu({name: '车辆管理', url: 'ticketor/bus', roles: [Menu.ROLE_TICKETOR]}),
+    new Menu({name: '车站管理', url: 'ticketor/station', roles: [Menu.ROLE_TICKETOR]}),
+    new Menu({name: '个人中心', url: 'personal', roles: [Menu.ROLE_TICKETOR, Menu.ROLE_PASSENGER]})
   ]);
 
   constructor() {

@@ -5,6 +5,7 @@ import com.mengyunzhi.core.entity.YunzhiEntity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 public class Route implements YunzhiEntity {
@@ -16,9 +17,18 @@ public class Route implements YunzhiEntity {
     @JoinColumn(nullable = false)
     private Bus bus;
 
-    private Timestamp startTime;
+    private Date startTime;
 
-    private Timestamp endTime;
+    private Date endTime;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private City startCity;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private City endCity;
+
 
     @ManyToOne
     @JoinColumn(nullable = false)
@@ -90,19 +100,35 @@ public class Route implements YunzhiEntity {
         this.discount = discount;
     }
 
-    public Timestamp getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Timestamp startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public Timestamp getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Timestamp endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public City getStartCity() {
+        return startCity;
+    }
+
+    public void setStartCity(City startCity) {
+        this.startCity = startCity;
+    }
+
+    public City getEndCity() {
+        return endCity;
+    }
+
+    public void setEndCity(City endCity) {
+        this.endCity = endCity;
     }
 }

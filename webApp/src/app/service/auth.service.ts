@@ -42,7 +42,7 @@ export class AuthService {
               private commonService: CommonService) {
     this.appOnReadyItem = this.commonService.getAppOnReadyItem();
     // 如果当前不是登录模块，请求当前登录用户
-    if (!this.router.url.includes(`${this.baseDir}`)) {
+    if (!this.router.url.includes(`login`)) {
       this.requestCurrentLoginUser();
     } else {
       this.appOnReadyItem.ready = true;

@@ -30,27 +30,20 @@ const routes: Routes = [
           title: '个人中心'
         }
       },
-      // {
-      //   path: 'user',
-      //   loadChildren: () => import('./pages/admin/user/user-index/user-index.module').then(m => m.UserIndexModule),
-      //   data: {
-      //     title: '用户管理'
-      //   }
-      // },
-      // {
-      //   path: 'user/add',
-      //   loadChildren: () => import('./pages/admin/user/user-add/user-add.module').then(m => m.UserAddModule),
-      //   data: {
-      //     title: '用户新增'
-      //   }
-      // },
-      // {
-      //   path: 'user/edit/:id',
-      //   loadChildren: () => import('./pages/admin/user/user-edit/user-edit.module').then(m => m.UserEditModule),
-      //   data: {
-      //     title: '用户编辑'
-      //   }
-      // },
+      {
+        path: 'ticketor',
+        loadChildren: () => import('./pages/ticketor/ticketor.module').then(m => m.TicketorModule),
+        data: {
+          title: '售票员模块'
+        }
+      },
+      {
+        path: 'passenger',
+        loadChildren: () => import('./pages/passenger/passenger.module').then(m => m.PassengerModule),
+        data: {
+          title: '乘客模块'
+        }
+      }
     ]
   }
 ];

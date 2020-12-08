@@ -1,21 +1,23 @@
 package xiaoqiangZzz.busticket.Repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import xiaoqiangZzz.busticket.Entity.City;
 import xiaoqiangZzz.busticket.Entity.Route;
-import xiaoqiangZzz.busticket.Entity.User;
 
-import javax.transaction.Transactional;
-import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
-public interface RouteRepository extends CrudRepository<Route, Long>, JpaSpecificationExecutor<Route> {
-    @Transactional
-    Iterable<Route> findAllByStartStationCityAndEndStationCityAndStartTimeIsBetween(
+public interface RouteRepository extends PagingAndSortingRepository<Route, Long>, JpaSpecificationExecutor {
+
+    Page<Route> findAllByStartStationCityAndEndStationCityAndStartTimeIsBetween(
             City startCity,
             City endCity,
-            Timestamp time1,
-            Timestamp time2);
+            Date time1,
+            Date time2,
+            Pageable pageable);
 
+    List<Route> findAll();
 }

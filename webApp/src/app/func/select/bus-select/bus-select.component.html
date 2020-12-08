@@ -1,0 +1,4 @@
+<select [compareWith]="comparedWithId" class="form-control" [(ngModel)]="state.bus" (change)="change(state.bus)">
+<option [ngValue]="null" >请选择车辆...</option>
+<option *ngFor="let _bus of state.buses" [ngValue]="_bus">{{_bus.busNumber}}</option>
+</select>

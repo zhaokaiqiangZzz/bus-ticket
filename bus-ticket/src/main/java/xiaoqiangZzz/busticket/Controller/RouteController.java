@@ -6,18 +6,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.SortDefault;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import xiaoqiangZzz.busticket.Entity.Route;
-import xiaoqiangZzz.busticket.Entity.User;
+import xiaoqiangZzz.busticket.Entity.Station;
 import xiaoqiangZzz.busticket.Security.YunzhiSecurityRole;
 import xiaoqiangZzz.busticket.Service.RouteService;
-import xiaoqiangZzz.busticket.Service.UserService;
 
-import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("route")
@@ -27,13 +23,44 @@ public class RouteController {
     public RouteController(RouteService routeService) {
         this.routeService = routeService;
     }
-    @GetMapping("page")
-    @Secured(YunzhiSecurityRole.ROLE_USER)
+
+    @GetMapping("search")
     public Page<Route> page(@RequestParam(required = false) String startCityName,
                             @RequestParam(required = false) String endCityName,
                             @RequestParam(required = false) Date date,
                             @SortDefault.SortDefaults(@SortDefault(sort = "id", direction = Sort.Direction.DESC))
                                    Pageable pageable) {
-        return this.routeService.page(startCityName, endCityName, date, pageable);
+        return this.routeService.search(startCityName, endCityName, date, pageable);
+    }
+
+    @GetMapping("page")
+    public Page<Route> page(@SortDefault.SortDefaults(@SortDefault(sort = "id", direction = Sort.Direction.DESC)) Pageable pageable) {
+        return this.routeService.page(pageable);
+    }
+
+    @PostMapping
+    public void add(@RequestBody Route route) {
+        this.routeService.save(route);
+    }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Long id) {
+        this.routeService.delete(id);
+    }
+
+    @GetMapping
+//    @JsonView(GegAllJsonView.class)
+    public List<Route> getAll() {
+        return this.routeService.getAll();
+    }
+
+    @GetMapping("{id}")
+    public Route getRouteById(@PathVariable Long id) {
+        return this.routeService.getById(id);
+    }
+
+    @PutMapping("{id}")
+    public Route update(@PathVariable Long id, @RequestBody Route route) {
+        return this.routeService.update(id, route);
     }
 }

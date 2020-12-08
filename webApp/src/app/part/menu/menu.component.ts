@@ -1,25 +1,20 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { BaseMenu } from '../../base/base-menu';
-import { Router } from '@angular/router';
-// import { AuthService } from '../../service/auth.service';
-// import { User } from '../../common/user';
-import { BehaviorSubject, Subscription } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import {isNotNullOrUndefined} from 'codelyzer/util/isNotNullOrUndefined';
-import { User } from '../../common/user';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {environment} from 'src/environments/environment';
+import {Router} from '@angular/router';
+import {MenuService} from '../../service/menu.service';
+import {Menu} from '../../common/menu';
+import {UserService} from '../../service/user.service';
+import {isDefined} from '../../utils';
 import { AuthService } from '../../service/auth.service';
-import { Menu } from '../../common/menu';
-import { UserService } from '../../service/user.service';
-import { isDefined } from '../../utils';
-import { MenuService } from '../../service/menu.service';
+import { User } from '../../common/user';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: [ './menu.component.scss' ]
+  styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit, OnDestroy {
-
   menus: Array<Menu>;
 
   private subscription: Subscription;
@@ -28,15 +23,13 @@ export class MenuComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private menuService: MenuService,
-    private userService: UserService,
     private authService: AuthService) {
   }
 
   ngOnInit(): void {
-
     this.subscription = this.menuService.getAll()
       .subscribe(data => {
-        this.userSubscription = this.authService.currentLoginUser$
+        this.userSubscription = this.authService.getCurrentLoginUser$()
           .subscribe(user => {
             this.menus = [];
             if (isDefined(user)) {
@@ -81,7 +74,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     // 根据是否有第2个/选择截取方式
     // 从urlSegment[1]开始是因为urlSegment[0] === ""
     const urlSegment = this.router.url.split('/');
-    if (urlSegment[1] === 'teacher' || urlSegment[1] === 'student') {
+    if (urlSegment[1] === 'ticketor' || urlSegment[1] === 'passenger') {
       mainRoute = urlSegment[1] + '/' + urlSegment[2];
     } else {
       mainRoute = urlSegment[1];

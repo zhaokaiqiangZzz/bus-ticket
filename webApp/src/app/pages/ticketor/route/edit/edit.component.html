@@ -1,0 +1,73 @@
+<form [formGroup]="routeForm" (ngSubmit)="submit()">
+  <div class="row">
+    <div class="col-md-6 offset-md-1">
+      <div class="row">
+        <div class="col-md-4 form-text text-right">
+          <label>车辆：</label>
+        </div>
+        <div class="col-md-8">
+          <app-bus-select [bus]="bus" (busSelect)="bindBus($event)"></app-bus-select>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-4 form-text text-right">
+          <label>起始车站：</label>
+        </div>
+        <div class="col-md-8">
+          <app-station-select [station]="startStation" (stationSelect)="bindStartStation($event)"></app-station-select>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-4 form-text text-right">
+          <label>到达车站：</label>
+        </div>
+        <div class="col-md-8">
+          <app-station-select [station]="endStation" (stationSelect)="bindEndStation($event)"></app-station-select>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-4 text-right">
+          <label for="startTime" class="form-text">起始时间<code>*</code></label>
+        </div>
+        <div class="col-md-8">
+          <input type="datetime-local" class="form-control" id="startTime" placeholder="请输入开始时间" formControlName="startTime"/>
+        </div>
+      </div>
+      <div class="row mt-2" *ngIf="startTime.invalid && (startTime.dirty || startTime.touched)">
+        <div class="col-md-8 offset-md-4">
+          <small class="text-danger" *ngIf="startTime.errors.required">
+            <i class="fa fa-exclamation-triangle"></i>
+            开起始时间必须
+          </small>
+        </div>
+      </div>
+      <br>
+      <div class="row mt-4">
+        <div class="col-md-4 text-right">
+          <label for="endTime" class="form-text">到达时间<code>*</code></label>
+        </div>
+        <div class="col-md-8">
+          <input type="datetime-local" class="form-control" id="endTime" placeholder="请输入结束时间" formControlName="endTime"/>
+        </div>
+      </div>
+      <div class="row mt-2" *ngIf="endTime.invalid && (endTime.dirty || endTime.touched)">
+        <div class="col-md-8 offset-md-4">
+          <small class="text-danger" *ngIf="endTime.errors.required">
+            <i class="fa fa-exclamation-triangle"></i>
+            到达时间必须
+          </small>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-8 offset-md-4">
+          <button [appYzSubmitButton]="{submitting: submitting}" class="btn btn-dark btn-sm" [disabled]="routeForm.invalid" type="submit">
+            <i class="far fa-save"></i>
+            &nbsp;保存
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
