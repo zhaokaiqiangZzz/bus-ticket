@@ -46,4 +46,13 @@ public class BusServiceImpl implements BusService {
     public List<Bus> getAll() {
         return this.busRepository.findAll();
     }
+
+    @Override
+    public boolean busNumberExist(String busNumber) {
+        // 去除前后空格
+        String busBusNumber = busNumber.trim();
+
+        // 查询是否存在
+        return this.busRepository.existsByBusNumber(busBusNumber);
+    }
 }

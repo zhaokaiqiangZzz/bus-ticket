@@ -1,1 +1,34 @@
-  <p>route works!</p>
+
+<table class="table table-striped table-bordered mt-2">
+  <thead class="thead-light">
+  <tr>
+    <th scope="col">序号</th>
+    <th scope="col">车牌号</th>
+    <th scope="col">起始车站</th>
+    <th scope="col">终点车站</th>
+    <th scope="col">发车时间</th>
+    <th scope="col">到站时间</th>
+    <th scope="col">剩余票数</th>
+    <th scope="col">操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let route of data?.content; index as i;">
+    <td>{{ page * size + i + 1 }}</td>
+    <td>{{ route.bus.busNumber }}</td>
+    <td>{{ route.startStation.name }}</td>
+    <td>{{ route.endStation.name }}</td>
+    <td>{{ route.startTime | date:"yyyy-MM-dd: hh:mm" }}</td>
+    <td>{{ route.endTime | date:"yyyy-MM-dd: hh:mm" }}</td>
+    <td>{{ route.bus.seatNumber - route.buyNumber }}</td>
+    <td>
+      <button type="button" (click)="buy(route)" class="btn btn-danger btn-sm">
+        <i class="fas fa-trash-alt"></i>
+        购票
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<app-page [page]="data?.number" [size]="data?.size" [totalElements]="data?.totalElements"
+          (changePage)="reloadByPage($event)"></app-page>

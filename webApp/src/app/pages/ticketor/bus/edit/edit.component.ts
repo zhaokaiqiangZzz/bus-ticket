@@ -7,6 +7,7 @@ import { BusService } from '../../../../service/bus.service';
 import { HttpErrorResponse } from '../../../../base/Http-error-response';
 import { Bus } from '../../../../common/bus';
 import { Assert } from '../../../../utils';
+import { BusBusNumberAsyncValidator } from '../../../../validator/bus-busNumber-async-validator';
 
 @Component({
   selector: 'app-edit',
@@ -24,13 +25,14 @@ export class EditComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private builder: FormBuilder,
-              private busService: BusService) {
+              private busService: BusService,
+              private busBusNumberAsyncValidator: BusBusNumberAsyncValidator) {
     this.createForm();
   }
 
   createForm(): void {
     this.busForm = this.builder.group({
-      busNumber: ['', [Validators.required]],
+      busNumber: ['', [Validators.required], [this.busBusNumberAsyncValidator]],
       seatNumber: ['', [Validators.required]],
     }, {updateOn: 'blur'});
   }

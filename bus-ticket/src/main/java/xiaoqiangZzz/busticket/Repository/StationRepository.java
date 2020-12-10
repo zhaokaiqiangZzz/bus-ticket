@@ -15,4 +15,6 @@ public interface StationRepository extends PagingAndSortingRepository<Station, L
     List<Station> findAllByCity(City city);
 
     List<Station> findAll();
+
+    boolean existsByName(String stationName);
 }

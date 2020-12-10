@@ -28,7 +28,6 @@ export class BusService {
   }
 
   public save(bus: Bus): Observable<Bus> {
-    console.log(bus);
     return this.httpClient.post<Bus>(`${this.baseUrl}`, bus);
   }
 
@@ -42,5 +41,13 @@ export class BusService {
 
   public getAll(): Observable<Array<Bus>> {
     return this.httpClient.get<Array<Bus>>(`${this.baseUrl}`);
+  }
+
+  /**
+   * 车牌号是否已经存在
+   * @param name 车辆名
+   */
+  public busNumberExist(busNumber: string): Observable<boolean> {
+    return this.httpClient.get<boolean>(`${this.baseUrl}/busNumberExist/${busNumber}`);
   }
 }

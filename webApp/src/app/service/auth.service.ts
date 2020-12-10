@@ -19,7 +19,7 @@ export class AuthService {
    * buffer 设置为 1
    * 只保留最新的登录用户
    */
-  currentLoginUser$ = new ReplaySubject<User>(1);
+  private currentLoginUser$ = new ReplaySubject<User>(1);
 
   /**
    * 用户注销时触发的回调函数
@@ -42,7 +42,7 @@ export class AuthService {
               private commonService: CommonService) {
     this.appOnReadyItem = this.commonService.getAppOnReadyItem();
     // 如果当前不是登录模块，请求当前登录用户
-    if (!this.router.url.includes(`login`)) {
+    if (!this.router.url.startsWith(`/login`)) {
       this.requestCurrentLoginUser();
     } else {
       this.appOnReadyItem.ready = true;
@@ -64,6 +64,13 @@ export class AuthService {
 
   /**
    * 获取当前登录用户
+   */
+  getCurrentLoginUser$(): Observable<User> {
+    return this.currentLoginUser$;
+  }
+
+  /**
+   * 获取当前登录用户
    * 该方法需要配合appOnReady使用
    */
   getCurrentLoginUser(): User {
@@ -71,13 +78,6 @@ export class AuthService {
       throw new Error('当前登录用户为null，请使用`commonService.appOnReady(() => { 这里是代码 })`启动组件');
     }
     return this.currentLoginUser;
-  }
-
-  /**
-   * 获取当前登录用户
-   */
-  getCurrentLoginUser$(): Observable<User> {
-    return this.currentLoginUser$;
   }
 
   /**

@@ -10,7 +10,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'route',
+    path: 'route/:startCityId/:endCityId/:startTime',
     loadChildren: () => import('./route/route/route.module').then(m => m.RouteModule),
     data: {
       title: '车次列表'

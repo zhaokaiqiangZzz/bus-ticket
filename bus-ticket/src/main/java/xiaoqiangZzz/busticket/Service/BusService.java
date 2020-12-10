@@ -23,4 +23,6 @@ public interface BusService {
     void delete(Long id);
 
     List<Bus> getAll();
+
+    boolean busNumberExist(String busNumber);
 }

@@ -30,7 +30,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.subscription = this.menuService.getAll()
       .subscribe(data => {
         this.userSubscription = this.authService.getCurrentLoginUser$()
-          .subscribe(user => {
+          .subscribe((user: User) => {
             this.menus = [];
             if (isDefined(user)) {
               data.forEach((menu) => {

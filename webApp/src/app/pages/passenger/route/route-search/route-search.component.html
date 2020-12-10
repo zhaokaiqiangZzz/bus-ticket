@@ -1,1 +1,49 @@
-<p>route-search works!</p>
+<form [formGroup]="routeForm" (ngSubmit)="submit()">
+  <div class="row">
+    <div class="col-md-6 offset-md-1">
+      <div class="row mt-4">
+        <div class="col-md-4 form-text text-right">
+          <label>起始城市<code>*</code></label>
+        </div>
+        <div class="col-md-8">
+          <app-city-select (citySelect)="bindStartCity($event)"></app-city-select>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-4 form-text text-right">
+          <label>到达城市<code>*</code></label>
+        </div>
+        <div class="col-md-8">
+          <app-city-select (citySelect)="bindEndCity($event)"></app-city-select>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-4 text-right">
+          <label for="startTime" class="form-text">起始时间<code>*</code></label>
+        </div>
+        <div class="col-md-8">
+          <input type="date" class="form-control" id="startTime" placeholder="请输入开始时间" formControlName="startTime"/>
+        </div>
+      </div>
+      <div class="row mt-2" *ngIf="startTime.invalid && (startTime.dirty || startTime.touched)">
+        <div class="col-md-8 offset-md-4">
+          <small class="text-danger" *ngIf="startTime.errors.required">
+            <i class="fa fa-exclamation-triangle"></i>
+            开起始时间必须
+          </small>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-8 offset-md-4">
+          <button [appYzSubmitButton]="{submitting: submitting}" class="btn btn-info btn-sm" [disabled]="routeForm.invalid" type="submit">
+            <i class="far fa-save"></i>
+            &nbsp;查询
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+

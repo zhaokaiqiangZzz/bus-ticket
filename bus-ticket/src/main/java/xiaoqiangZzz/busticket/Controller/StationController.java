@@ -52,6 +52,8 @@ public class StationController {
         return this.stationService.update(id, station);
     }
 
-    interface GegAllJsonView {
+    @GetMapping("nameExist/{name}")
+    public boolean nameExist(@PathVariable String name) {
+        return this.stationService.nameExist(name);
     }
 }

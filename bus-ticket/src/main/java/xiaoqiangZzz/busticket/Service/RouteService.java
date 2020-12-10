@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface RouteService {
-    Page<Route> search(String startCityName, String endCityName, Date date, Pageable pageable);
+    Page<Route> search(Long startCityId, Long endCityId, Date date, Pageable pageable);
 
     // 保存
     Route save(Route route);

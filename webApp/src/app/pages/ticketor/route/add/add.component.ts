@@ -33,8 +33,8 @@ export class AddComponent implements OnInit {
       bus: null,
       startStation: null,
       endStation: null,
-      startTime: ['', [Validators.required]],
-      endTime: ['', [Validators.required]],
+      startTime: new Date(),
+      endTime: new Date(),
     }, {updateOn: 'blur'});
   }
 
@@ -65,8 +65,8 @@ export class AddComponent implements OnInit {
       bus: this.bus,
       startStation: this.startStation,
       endStation: this.endStation,
-      startTime: this.routeForm.get('startTime').value,
-      endTime: this.routeForm.get('endTime').value,
+      startTime: new Date(this.routeForm.get('startTime').value).getTime(),
+      endTime: new Date(this.routeForm.get('endTime').value).getTime(),
     });
     this.saveRoute(this.routeForm.value);
   }

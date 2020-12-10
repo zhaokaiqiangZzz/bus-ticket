@@ -36,4 +36,6 @@
   </tr>
   </tbody>
 </table>
+<app-page [page]="data?.number" [size]="data?.size" [totalElements]="data?.totalElements"
+          (changePage)="reloadByPage($event)"></app-page>
 

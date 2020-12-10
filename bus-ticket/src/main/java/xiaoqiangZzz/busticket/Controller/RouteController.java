@@ -25,12 +25,19 @@ public class RouteController {
     }
 
     @GetMapping("search")
-    public Page<Route> page(@RequestParam(required = false) String startCityName,
-                            @RequestParam(required = false) String endCityName,
-                            @RequestParam(required = false) Date date,
+    public Page<Route> page(@RequestParam(required = false) Long startCityId,
+                            @RequestParam(required = false) Long endCityId,
+                            @RequestParam(required = false) Long startTime,
                             @SortDefault.SortDefaults(@SortDefault(sort = "id", direction = Sort.Direction.DESC))
                                    Pageable pageable) {
-        return this.routeService.search(startCityName, endCityName, date, pageable);
+        Date date = null;
+        if (startTime != null) {
+            date = new Date(startTime);
+        }
+        System.out.println(startCityId);
+        System.out.println(endCityId);
+        System.out.println(startTime);
+        return this.routeService.search(startCityId, endCityId, date, pageable);
     }
 
     @GetMapping("page")

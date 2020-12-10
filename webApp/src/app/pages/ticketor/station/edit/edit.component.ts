@@ -7,6 +7,7 @@ import { StationService } from '../../../../service/station.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from '../../../../service/common.service';
 import { City } from '../../../../common/city';
+import { StationNameAsyncValidator } from '../../../../validator/station-name-async-validator';
 
 @Component({
   selector: 'app-edit',
@@ -25,13 +26,14 @@ export class EditComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private builder: FormBuilder,
-              private stationService: StationService) {
+              private stationService: StationService,
+              private stationNameAsyncValidator: StationNameAsyncValidator) {
     this.createForm();
   }
 
   createForm(): void {
     this.stationForm = this.builder.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required], [this.stationNameAsyncValidator]],
       city: null
     });
   }

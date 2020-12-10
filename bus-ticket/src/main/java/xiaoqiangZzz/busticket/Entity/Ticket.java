@@ -13,9 +13,13 @@ public class Ticket {
     @JoinColumn(nullable = false)
     private Route route;
 
+//    @ManyToOne
+//    @JoinColumn(nullable = false)
+//    private Orders orders;
+
     @ManyToOne
     @JoinColumn(nullable = false)
-    private Orders orders;
+    private User user;
 
     private float price;
 
@@ -38,13 +42,13 @@ public class Ticket {
         this.route = route;
     }
 
-    public Orders getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Orders orders) {
-        this.orders = orders;
-    }
+//    public Orders getOrders() {
+//        return orders;
+//    }
+//
+//    public void setOrders(Orders orders) {
+//        this.orders = orders;
+//    }
 
     public float getPrice() {
         return price;
@@ -60,5 +64,13 @@ public class Ticket {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
