@@ -16,6 +16,10 @@ public class City implements YunzhiEntity {
 
     private String name;
 
+    private String pinyin; // 拼音
+
+    private Boolean primaried = false; // 是否热门城市
+
     public Long getId() {
         return id;
     }
@@ -30,5 +34,21 @@ public class City implements YunzhiEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPinyin() {
+        return pinyin;
+    }
+
+    public void setPinyin(String pinyin) {
+        this.pinyin = pinyin;
+    }
+
+    public Boolean getPrimaried() {
+        return primaried;
+    }
+
+    public void setPrimaried(Boolean primaried) {
+        this.primaried = primaried;
     }
 }

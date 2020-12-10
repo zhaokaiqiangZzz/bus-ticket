@@ -12,4 +12,6 @@ public interface BusRepository extends PagingAndSortingRepository<Bus, Long>, Jp
     Page<Bus> findAllByBusNumberLike(String busNumber, Pageable pageable);
 
     List<Bus> findAll();
+
+    boolean existsByBusNumber(String busBusNumber);
 }

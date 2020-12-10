@@ -10,7 +10,7 @@ spring:
     show-sql: ${show-sql:false}
   # 配置数据源
   datasource:
-    url: jdbc:mysql://${datasource.url:127.0.0.1}:${datasource.port:3306}/${datasource.dbname:bus_ticket}?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://${datasource.url:127.0.0.1}:${datasource.port:3306}/${datasource.dbname:bus_ticket}?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Shanghai&serverTimezone=GMT%2B8
     username: ${datasource.username:root}
     password: ${datasource.password:}
   # 启用 flyway
@@ -32,4 +32,7 @@ server:
 ---
 # 开发环境（使用本机mysql数据库的开发环境）
 spring:
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
   profiles: dev

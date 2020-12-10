@@ -8,6 +8,7 @@ import { EditComponent } from './edit/edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { YzSubmitButtonModule } from '../../../func/yz-submit-button/yz-submit-button.module';
 import { SelectModule } from '../../../func/select/select.module';
+import { PageModule } from '../../../func/page/page.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { SelectModule } from '../../../func/select/select.module';
     StationRoutingModule,
     ReactiveFormsModule,
     YzSubmitButtonModule,
-    SelectModule
+    SelectModule,
+    PageModule
   ]
 })
 export class StationModule { }

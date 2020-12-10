@@ -103,7 +103,9 @@ export class LoginComponent implements OnInit {
     this.authService.login(user)
       .subscribe(() => {
         this.showErrorInfo = false;
-        this.router.navigateByUrl('dashboard');
+        this.authService.requestCurrentLoginUser(() => {
+          this.router.navigateByUrl('dashboard');
+        });
       }, () => {
         this.errorInfo = '登录失败，请检查您的用户名、密码';
         this.showErrorInfo = true;

@@ -29,7 +29,6 @@ export class StationService {
   }
 
   public save(station: Station): Observable<Station> {
-    console.log(station);
     return this.httpClient.post<Station>(`${this.baseUrl}`, station);
   }
 
@@ -43,5 +42,13 @@ export class StationService {
 
   public getAll(): Observable<Array<Station>> {
     return this.httpClient.get<Array<Station>>(`${this.baseUrl}`);
+  }
+
+  /**
+   * 车站名是否已经存在
+   * @param name 车站名
+   */
+  public nameExist(name: string): Observable<boolean> {
+    return this.httpClient.get<boolean>(`${this.baseUrl}/nameExist/${name}`);
   }
 }

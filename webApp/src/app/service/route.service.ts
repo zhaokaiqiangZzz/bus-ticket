@@ -27,7 +27,6 @@ export class RouteService {
   }
 
   public save(route: Route): Observable<Route> {
-    console.log(route);
     return this.httpClient.post<Route>(`${this.baseUrl}`, route);
   }
 
@@ -37,5 +36,18 @@ export class RouteService {
 
   public getRouteById(routeId: number): Observable<Route> {
     return this.httpClient.get<Route>(`${this.baseUrl}/${routeId.toString()}`);
+  }
+
+  public search(startCityId: number, endCityId: number, startTime: number, page: number, size: number
+  ): Observable<Page<Route>> {
+    return this.httpClient.get<Page<Route>>(`${this.baseUrl}/search`, {
+      params: {
+        startCityId: String(startCityId),
+        endCityId: String(endCityId),
+        startTime: String(startTime),
+        page: String(page),
+        size: String(size)
+      }
+    });
   }
 }

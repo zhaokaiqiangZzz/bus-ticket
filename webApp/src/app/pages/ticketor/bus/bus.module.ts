@@ -7,6 +7,7 @@ import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { YzSubmitButtonModule } from '../../../func/yz-submit-button/yz-submit-button.module';
+import { PageModule } from '../../../func/page/page.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { YzSubmitButtonModule } from '../../../func/yz-submit-button/yz-submit-b
     CommonModule,
     BusRoutingModule,
     YzSubmitButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PageModule
   ]
 })
 export class BusModule { }

@@ -8,10 +8,16 @@ export class City {
   /** 城市名 */
   name: string;
 
-  constructor(data?: { id?: number, name?: string }) {
+  pinyin: string;
+
+  primaried: boolean;
+
+  constructor(data?: { id?: number, name?: string, pinyin?: string, primaried?: boolean }) {
     if (data) {
       this.id = data.id;
       this.name = data.name;
+      this.pinyin = data.pinyin;
+      this.primaried = data.primaried;
     }
   }
 }

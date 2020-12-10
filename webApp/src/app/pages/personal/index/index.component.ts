@@ -13,7 +13,6 @@ export class IndexComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    // console.log(this.authService.getCurrentLoginUser());
     this.authService.getCurrentLoginUser$()
       .subscribe((user: User) => {
         this.currentUser = user;

@@ -23,12 +23,11 @@ export class TicketService {
     });
   }
 
-  public delete(ticketId: number): Observable<null> {
-    return this.httpClient.delete<null>(`${this.baseUrl}/${ticketId.toString()}`);
+  public cancel(ticketId: number): Observable<null> {
+    return this.httpClient.put<null>(`${this.baseUrl}` + `/cancel` + `/${ticketId.toString()}`, null);
   }
 
   public save(ticket: Ticket): Observable<Ticket> {
-    console.log(ticket);
     return this.httpClient.post<Ticket>(`${this.baseUrl}`, ticket);
   }
 
@@ -38,5 +37,9 @@ export class TicketService {
 
   public getTicketById(ticketId: number): Observable<Ticket> {
     return this.httpClient.get<Ticket>(`${this.baseUrl}/${ticketId.toString()}`);
+  }
+
+  buy(routeId: number): Observable<null> {
+    return this.httpClient.post<null>(`${this.baseUrl}/${routeId.toString()}`, null);
   }
 }

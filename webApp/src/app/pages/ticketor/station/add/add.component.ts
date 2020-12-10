@@ -6,6 +6,7 @@ import { CommonService } from '../../../../service/common.service';
 import { Router } from '@angular/router';
 import { StationService } from '../../../../service/station.service';
 import { City } from '../../../../common/city';
+import { StationNameAsyncValidator } from '../../../../validator/station-name-async-validator';
 
 @Component({
   selector: 'app-add',
@@ -22,12 +23,13 @@ export class AddComponent implements OnInit {
   constructor(private commonService: CommonService,
               private router: Router,
               private builder: FormBuilder,
-              private stationService: StationService) {
+              private stationService: StationService,
+              private stationNameAsyncValidator: StationNameAsyncValidator) {
   }
 
   ngOnInit(): void {
     this.stationForm = this.builder.group({
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required], [this.stationNameAsyncValidator]],
       city: null
     }, {updateOn: 'blur'});
   }

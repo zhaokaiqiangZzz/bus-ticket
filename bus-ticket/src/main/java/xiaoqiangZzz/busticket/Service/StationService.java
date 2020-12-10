@@ -25,4 +25,6 @@ public interface StationService {
     List<Station> findByCity(Long cityId);
 
     List<Station> getAll();
+
+    boolean nameExist(String name);
 }

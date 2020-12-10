@@ -37,8 +37,8 @@ export class EditComponent implements OnInit {
       bus: null,
       startStation: null,
       endStation: null,
-      startTime: ['', [Validators.required]],
-      endTime: ['', [Validators.required]],
+      startTime: new Date(),
+      endTime: new Date(),
     }, {updateOn: 'blur'});
   }
 
@@ -71,7 +71,6 @@ export class EditComponent implements OnInit {
         Assert.isDefined(data.endStation, 'endStation');
         Assert.isDefined(data.startTime, 'startTime');
         Assert.isDefined(data.endTime, 'endTime');
-        console.log(data);
         this.initForm(data);
       });
     });
@@ -105,8 +104,8 @@ export class EditComponent implements OnInit {
       bus: this.bus,
       startStation: this.startStation,
       endStation: this.endStation,
-      startTime: this.routeForm.get('startTime').value,
-      endTime: this.routeForm.get('endTime').value,
+      startTime: new Date(this.routeForm.get('startTime').value).getTime(),
+      endTime: new Date(this.routeForm.get('endTime').value).getTime(),
     });
     this.updateRoute(this.routeForm.value);
   }

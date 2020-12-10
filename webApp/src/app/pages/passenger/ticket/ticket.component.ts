@@ -33,7 +33,7 @@ export class TicketComponent implements OnInit {
     // 确认框
     this.commonService.confirm((confirm: boolean) => {
       if (confirm) {
-        this.ticketService.delete(ticket.id).subscribe(() => {
+        this.ticketService.cancel(ticket.id).subscribe(() => {
           this.pageAll();
 
           // 操作成功提示
@@ -85,7 +85,7 @@ export class TicketComponent implements OnInit {
     this.size = config.size;
 
     // 获取历史参数
-    const params = this.commonService.getCurrentTicketState();
+    const params = this.commonService.getCurrentRouteState();
     if (params.page) {
       this.page = Number(params.page);
     }
@@ -102,6 +102,6 @@ export class TicketComponent implements OnInit {
     const params: UnknownProperty = {};
     params.page = this.page;
     params.size = this.size;
-    this.commonService.updateCurrentTicketState(params);
+    this.commonService.updateCurrentRouteState(params);
   }
 }

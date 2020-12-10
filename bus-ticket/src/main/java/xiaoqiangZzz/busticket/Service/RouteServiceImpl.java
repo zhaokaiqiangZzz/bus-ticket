@@ -49,14 +49,14 @@ public class RouteServiceImpl implements RouteService {
 
 
     @Override
-    public Page<Route> search(String startCityName, String endCityName, Date date, Pageable pageable) {
+    public Page<Route> search(Long startCityId, Long endCityId, Date date, Pageable pageable) {
         City startCity= null;
         City endCity= null;
-        if (startCityName != null) {
-            startCity = cityRepository.findByName(startCityName).orElseThrow(() -> new EntityNotFoundException("未找到起始城市"));
+        if (startCityId != null) {
+            startCity = cityRepository.findById(startCityId).orElseThrow(() -> new EntityNotFoundException("未找到起始城市"));
         }
-        if (endCityName != null) {
-            endCity = cityRepository.findByName(endCityName).orElseThrow(() -> new EntityNotFoundException("未找到终点城市"));
+        if (endCityId != null) {
+            endCity = cityRepository.findById(endCityId).orElseThrow(() -> new EntityNotFoundException("未找到终点城市"));
         }
 
         Date todayStartDate = getStartTime(date);

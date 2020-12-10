@@ -29,8 +29,8 @@
     <td>{{ route.bus.busNumber }}</td>
     <td>{{ route.startStation.name }}</td>
     <td>{{ route.endStation.name }}</td>
-    <td>{{ route.startTime | date:"yyyy-MM-dd: hh:mm" }}</td>
-    <td>{{ route.endTime | date:"yyyy-MM-dd: hh:mm" }}</td>
+    <td>{{ route.startTime | date:"yyyy-MM-dd: HH:mm" }}</td>
+    <td>{{ route.endTime | date:"yyyy-MM-dd: HH:mm" }}</td>
     <td>{{ route.bus.seatNumber }}</td>
     <td>{{ route.buyNumber }}</td>
     <td>
@@ -46,4 +46,6 @@
   </tr>
   </tbody>
 </table>
+<app-page [page]="data?.number" [size]="data?.size" [totalElements]="data?.totalElements"
+          (changePage)="reloadByPage($event)"></app-page>
 

@@ -6,6 +6,7 @@ import { CommonService } from '../../../../service/common.service';
 import { Router } from '@angular/router';
 import { BusService } from '../../../../service/bus.service';
 import { HttpErrorResponse } from '../../../../base/Http-error-response';
+import { BusBusNumberAsyncValidator } from '../../../../validator/bus-busNumber-async-validator';
 
 @Component({
   selector: 'app-add',
@@ -22,12 +23,13 @@ export class AddComponent implements OnInit {
   constructor(private commonService: CommonService,
               private router: Router,
               private builder: FormBuilder,
-              private busService: BusService) {
+              private busService: BusService,
+              private busBusNumberAsyncValidator: BusBusNumberAsyncValidator) {
   }
 
   ngOnInit(): void {
     this.busForm = this.builder.group({
-      busNumber: ['', [Validators.required]],
+      busNumber: ['', [Validators.required], [this.busBusNumberAsyncValidator]],
       seatNumber: ['', [Validators.required]],
     }, {updateOn: 'blur'});
   }
@@ -45,11 +47,11 @@ export class AddComponent implements OnInit {
       this.submitting = false;
       this.commonService.success(() => {
         this.router.navigateByUrl('/ticketor/bus');
-      }, '车站保存成功');
+      }, '车辆保存成功');
     }, (response: HttpErrorResponse) => {
       this.submitting = false;
       this.commonService.error(() => {
-      }, '车站保存失败');
+      }, '车辆保存失败');
     });
   }
 

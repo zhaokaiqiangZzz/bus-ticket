@@ -54,4 +54,13 @@ public class StationServiceImpl implements StationService {
     public List<Station> getAll() {
         return this.stationRepository.findAll();
     }
+
+    @Override
+    public boolean nameExist(String name) {
+        // 去除前后空格
+        String stationName = name.trim();
+
+        // 查询是否存在
+        return this.stationRepository.existsByName(stationName);
+    }
 }

@@ -50,6 +50,8 @@ public class BusController {
         return this.busService.update(id, bus);
     }
 
-    interface GegAllJsonView {
+    @GetMapping("busNumberExist/{busNumber}")
+    public boolean busNumberExist(@PathVariable String busNumber) {
+        return this.busService.busNumberExist(busNumber);
     }
 }
